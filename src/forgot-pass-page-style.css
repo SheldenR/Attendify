@@ -59,6 +59,13 @@ a {
     margin-bottom: 2rem;
 }
 
+#subheader {
+    margin: 0; 
+    font-size: 1.2rem; 
+    color: #606060; 
+    font-weight: 600;
+}
+
 #form {
     background: #EDEDED;
     color: #00000080;
@@ -78,9 +85,10 @@ a {
     font-size: 0.8rem;
     margin-top: 0.4rem;
     color: #606060;
+    display: none;
 }
 
-#login-button {
+#reset-pass-button {
     display: flex;
     width: 100%;
     border: 0px solid #95bf47;
@@ -95,11 +103,11 @@ a {
     border-radius: 0.5rem;
 }
 
-#login-button:hover {
+#reset-pass-button:hover {
     background: #47b38b;
 }
 
-#login-button:active {
+#reset-pass-button:active {
     background: #3c9c79;
 }
 
@@ -114,7 +122,7 @@ a {
 }
 
 #google-sign-in {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     color: #606060;

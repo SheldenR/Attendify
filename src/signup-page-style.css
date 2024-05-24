@@ -101,6 +101,10 @@ a {
     background: #47b38b;
 }
 
+#signup-button:active {
+    background: #3c9c79;
+}
+
 #create-account {
     font-size: 0.8rem;
     color: #606060;

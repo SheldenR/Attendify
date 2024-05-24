@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB9Az95KAvR6y9zBDqZv4BSSQZKI3sAH0g",
@@ -21,6 +21,7 @@ const password = document.getElementById("password");
 const confirm_password = document.getElementById("confirm-password");
 const login_button = document.getElementById("login-button");
 const signup_button = document.getElementById("signup-button");
+const reset_pass_button = document.getElementById("reset-pass-button")
 
 // Authentication methods
 const signup = async ()=> {
@@ -63,12 +64,40 @@ const login = async () => {
   });
 };
 
+const reset_pass = async () => {
+  const reset_email = email.value;
+  sendPasswordResetEmail(auth, reset_email)
+  .then(() => {
+    alert(`password reset email sent to ${reset_email}`);
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode, errorMessage);
+    alert(errorMessage);
+  });
+}
+
 // Event listeners
 if (document.URL.includes("login-page")) {
+  password.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      login();
+    };
+  });
   login_button.addEventListener("click", login);
 }
 
 if (document.URL.includes("signup-page")) {
+  confirm_password.addEventListener("keydown", login)
   signup_button.addEventListener("click", signup);
 }
 
+if (document.URL.includes("forgot-pass-page")) {
+  email.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      reset_pass();
+    };
+  });
+  reset_pass_button.addEventListener("click", reset_pass);
+}
